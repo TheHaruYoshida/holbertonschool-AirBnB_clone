@@ -29,7 +29,7 @@ class BaseModel:
     def save(self):
         """Update updated_at with current datetime"""
         self.updated_at = datetime.now()
-        storage.new(self)
+        storage.save()
 
     def to_dict(self):
         """Representation dictionary containing all keys/values"""
