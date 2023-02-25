@@ -35,14 +35,3 @@ class BaseModel:
         my_dict["created_at"] = self.created_at.isoformat()
         my_dict["updated_at"] = self.updated_at.isoformat()
         return my_dict
-
-    @classmethod
-    def new(cls, **kwargs):
-        """Create an instance with a dictionary representation"""
-        if kwargs:
-            for key, value in kwargs.items():
-                if key == "created_at" or key == "updated_at":
-                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                if key == "__class__":
-                    value = cls
-            return cls(**kwargs)
