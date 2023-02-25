@@ -29,6 +29,7 @@ class BaseModel:
     def save(self):
         """Update updated_at with current datetime"""
         self.updated_at = datetime.now()
+        storage.new(self)
 
     def to_dict(self):
         """Representation dictionary containing all keys/values"""
@@ -37,7 +38,3 @@ class BaseModel:
         my_dict["created_at"] = self.created_at.isoformat()
         my_dict["updated_at"] = self.updated_at.isoformat()
         return my_dict
-
-    def storage(self):
-        """Storage"""
-        storage.save()
