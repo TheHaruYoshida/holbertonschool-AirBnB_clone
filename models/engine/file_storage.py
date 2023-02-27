@@ -27,11 +27,11 @@ class FileStorage:
 
     def reload(self):
         """Deserializes the JSON file to __objects"""
-        from models.base_model import BaseModel 
+        from models.base_model import BaseModel
         try:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
                 new_dict = json.load(f)
-                for key, value in new_dict.items():
-                    FileStorage.__objects[key] = BaseModel.new(**value)
+            for key, value in new_dict.items():
+                FileStorage.__objects[key] = BaseModel(**value) 
         except:
             pass
