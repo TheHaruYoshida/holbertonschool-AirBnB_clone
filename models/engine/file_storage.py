@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """Store first object"""
 import json
-from models.base_model import BaseModel
-
 
 
 class FileStorage:
@@ -29,6 +27,7 @@ class FileStorage:
 
     def reload(self):
         """Deserializes the JSON file to __objects"""
+        from models.base_model import BaseModel 
         try:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
                 new_dict = json.load(f)
