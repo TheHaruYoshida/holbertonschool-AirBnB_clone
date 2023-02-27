@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Console"""
 import cmd
+import models
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -19,6 +21,66 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """Empty line + ENTER shouldn’t execute anything"""
         pass
+
+    def do_create(self, line):
+        """Creates a new instance of BaseModel"""
+        if not line:
+            print("** class name missing **")
+        elif line != "BaseModel":
+            print("** class doesn't exist **")
+        else:
+            new_instance = BaseModel()
+            new_instance.save()
+            print(new_instance.id)
+
+    def do_show(self, line):
+        """Prints the str representation of an instance
+        based on the class name and id"""
+        args = line.split()
+        if not line:
+            print("** class name missing **")
+        elif args[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        else:
+            key = "{}.{}".format(args[0], args[1])
+            if key in models.storage.all():
+                print(models.storage.all()[key])
+            else:
+                print("** no instance found **")
+
+    def do_destroy(self, line):
+        """Deletes an instance based on the class name and id"""
+        args = line.split()
+        if not line:
+            print("** class name missing **")
+        elif args[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        else:
+            key = "{}.{}".format(args[0], args[1])
+            if key in models.storage.all():
+                del models.storage.all()[key]
+                models.storage.save()
+            else:
+                print("** no instance found **")
+
+    def do_all(self, line):
+        """Prints all string representation of all instances
+        based or not on the class name"""
+        args = line.split()
+        if not line:
+            for key, value in models.storage.all().items():
+                print(value)
+        elif args[0] != "BaseModel":
+            print("** class doesn't exist **")
+        else:
+            for key, value in models.storage.all().items():
+                if args[0] in key:
+                    print(value)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
