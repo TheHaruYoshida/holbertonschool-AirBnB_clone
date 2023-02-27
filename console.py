@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
                 if args[0] in key:
                     print(value)
 
-        def do_update(self, line):
+    def do_update(self, line):
         """Updates an instance based on the class name and id"""
         args = line.split()
         if not line:
