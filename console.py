@@ -8,6 +8,7 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand class"""
     prompt = "(hbnb) "
+    commands = {'user': "User", 'BaseModel': "BaseModel"}
 
     def do_quit(self, arg):
         """Exit the program"""
@@ -24,9 +25,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """Creates a new instance of BaseModel"""
+        args= line.split()
         if not line:
             print("** class name missing **")
-        elif line != "BaseModel":
+        elif args[0] not in HBNBCommand.commands.keys():
             print("** class doesn't exist **")
         else:
             new_instance = BaseModel()
@@ -39,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if not line:
             print("** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in HBNBCommand.commands.keys():
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
@@ -55,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if not line:
             print("** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in HBNBCommand.commands.keys():
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
@@ -74,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             for key, value in models.storage.all().items():
                 print(value)
-        elif args[0] != "BaseModel":
+        elif args[0] not in HBNBCommand.commands.keys():
             print("** class doesn't exist **")
         else:
             for key, value in models.storage.all().items():
@@ -86,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if not line:
             print("** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in HBNBCommand.commands.keys():
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
