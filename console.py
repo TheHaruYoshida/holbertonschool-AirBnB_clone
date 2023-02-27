@@ -31,9 +31,9 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in HBNBCommand.commands.keys():
             print("** class doesn't exist **")
         else:
-            new_instance = BaseModel()
-            new_instance.save()
-            print(new_instance.id)
+            new = eval(HBNBCommand.commands[args[0]])()
+            new.save()
+            print(new.id)
 
     def do_show(self, line):
         """Prints the str representation of an instance
@@ -92,16 +92,15 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
+        elif len(args) == 2:
+            print("** attribute name missing **")
+        elif len(args) == 3:
+            print("** value missing **")
         else:
             key = "{}.{}".format(args[0], args[1])
             if key in models.storage.all():
-                if len(args) == 2:
-                    print("** attribute name missing **")
-                elif len(args) == 3:
-                    print("** value missing **")
-                else:
-                    setattr(models.storage.all()[key], args[2], args[3])
-                    models.storage.all()[key].save()
+                setattr(models.storage.all()[key], args[2], args[3])
+                models.storage.all()[key].save()
             else:
                 print("** no instance found **")
 
