@@ -3,12 +3,13 @@
 import cmd
 import models
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand class"""
     prompt = "(hbnb) "
-    commands = {'User': "User", 'BaseModel': "BaseModel"}
+    commands = {"User": User, "BaseModel": BaseModel}
 
     def do_quit(self, arg):
         """Exit the program"""
