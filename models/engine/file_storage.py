@@ -35,8 +35,8 @@ class FileStorage:
         from models.place import Place
         from models.review import Review
         l_classes = {"BaseModel": BaseModel, "User": User, "State": State,
-                   "Amenity": Amenity, "City": City, "Place": Place,
-                   "Review": Review}
+                     "Amenity": Amenity, "City": City, "Place": Place,
+                     "Review": Review}
         try:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
                 new_dict = json.load(f)
