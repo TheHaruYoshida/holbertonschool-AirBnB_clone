@@ -9,7 +9,3 @@ class Amenity(BaseModel):
     def __init__(self, *args, **kwargs):
         """Init method"""
         super().__init__(*args, **kwargs)
-
-    def __init__(self, *args, **kwargs):
-        """Init method"""
-        super().__init__(*args, **kwargs)
