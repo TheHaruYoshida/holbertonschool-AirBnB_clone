@@ -1,12 +1,11 @@
-# hbnb - an AirBnB clone :city_sunrise:
+# hbnb - an AirBnB clone
 
-    <img src="https://a0.muscache.com/airbnb/static/logos/belo-400x400.png">
 
 ## Description
 
 The first step towards building a full web application, this repository contains a back-end console.
 
-### Coding Style :technologist:
+### Coding Style
 All files are written in Python programming language.
 
 ### Usage
